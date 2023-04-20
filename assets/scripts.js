@@ -1,8 +1,12 @@
-var timerEl = document.getElementById('timer');
+var timerEl = document.getElementById("timer");
+var timeLeft = 0
+timerEl.textContent = "Time: "+timeLeft
+
+
 function countdown() {
     var timeLeft = 75;
     var timeInterval = setInterval(function () {
-     timerEl.textContent="Time: "+timeLeft;
+     timerEl.textContent=timeLeft;
      timeLeft--;
   
      if (timeLeft === 0){
@@ -13,3 +17,13 @@ function countdown() {
      }
     },1000);
   }
+
+
+function startQuiz{
+ if(startQuiz == true){
+  countdown()
+ }
+}
+var startQuizButton = document.querySelector(".startbutton")
+startQuizButton.addEventListener("click", startQuiz)
+
