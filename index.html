@@ -1,35 +1,111 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="./assets/style.css">
-    </head>
-    <body>
-        <div class="ScoreTimer">
-            <h3 id="highScoreLink">View Highscores</h3>
-            <h3 id="timer"></h3>
-        </div>      
+
+<head>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <div class="ScoreTimer">
+        <h3 id="highScoreLink">View Highscores</h3>
+        <h3 id="timer"></h3>
+    </div>
+
     <div class="firstPage">
-       <h1 id="firstPrompt">Coding Quiz Challenge</h1>
-       <h2 id="subheader">
-        Try to answer the following code-related questions within the 
-        time limit. Keep in mind that incorrect answers will penalize your scoretime by 
-        ten seconds!
-       </h2>
+        <h1>Coding Quiz Challenge</h1>
+        <h2 id="subheader">
+            Try to answer the following code-related questions within the
+            time limit. Keep in mind that incorrect answers will penalize your scoretime by
+            ten seconds!
+        </h2>
         <button class="startbutton">Start Quiz</button>
     </div>
-    <div class="secondPage"> 
 
+
+    <div class="secondPage hide">
+        <h3>Commonly used data type DO NOT include:</h3>
+        <ul>
+            <li class="Answers">
+                <button id="wrongAnswer1" data-answer="false">
+                    1.booleans
+                </button>
+                <button id="correctAnswer1" data-answer="true">
+                    2.alerts
+                </button>
+                <button id="wrongAnswer1" data-answer="false">
+                    3.numbers
+                </button>
+                <button id="wrongAnswer1" data-answer="false">
+                    4.strings
+                </button>
+            </li>
+        </ul>
+        <div class="correct hide">Correct!</div>
+        <div class="wrong hide">Wrong!</div>
     </div>
-    <div class="thirdPage"> 
-        
+
+    <div class="thirdPage hide">
+        <h3>the condition in an if / else statementis enclosed within ____:</h3>
+        <ul>
+            <li class="Answers">
+                <button id="wrongAnswer" data-answer="false">
+                    1.quotes
+                </button>
+                <button id="correctAnswer" data-answer="false">
+                    2.curly brackets
+                </button>
+                <button id="wrongAnswer" data-answer="true">
+                    3.parentheses
+                </button>
+                <button id="wrongAnswer" data-answer="false">
+                    4.square brackets
+                </button>
+            </li>
+        </ul>
     </div>
-    <div class="fourthPage"> 
-        
+
+    <div class="fourthPage hide">
+        <h3>Arrays in JavaScript can be used to store:</h3>
+        <ul>
+            <li class="Answers">
+                <button id="wrongAnswer" data-answer="false">
+                    1.numbers and strings
+                </button>
+                <button id="correctAnswer" data-answer="false">
+                    2.other arrays
+                </button>
+                <button id="wrongAnswer" data-answer="false">
+                    3.booleans
+                </button>
+                <button id="wrongAnswer" data-answer="true">
+                    4.all of the above
+                </button>
+            </li>
+        </ul>
     </div>
-    <div class="fithPage"> 
-        
+
+    <div class="fithPage hide">
+        <h3>String values must be enclosed within ____ when being assigned to variable:</h3>
+        <ul>
+            <li class="Answers">
+                <button id="wrongAnswer" data-answer="false">
+                    1.commas
+                </button>
+                <button id="correctAnswer" data-answer="true">
+                    2.curly brackets
+                </button>
+                <button id="wrongAnswer" data-answer="false">
+                    3.quotes
+                </button>
+                <button id="wrongAnswer" data-answer="false">
+                    4.parentheses
+                </button>
+            </li>
+        </ul>
     </div>
-    
-        <script src="./assets/scripts.js"></script>
-    </body>
+    <div class="lastPage hide"></div>
+
+    <script src="./assets/scripts.js"></script>
+</body>
+
 </html>
