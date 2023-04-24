@@ -64,3 +64,13 @@ Button{
 .hide {
   display: none;
 }
+
+.result{
+margin-top: 200px;
+margin-left: 150px;
+color: lightgray;
+font-size: 20px;
+border-top: lightgrey;
+border-style: dashed;
+
+}

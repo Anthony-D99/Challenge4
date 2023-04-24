@@ -9,22 +9,22 @@ var fourthPageEL = document.querySelector(".fourthPage")
 var fithPageEL = document.querySelector(".fithPage")
 
 var wrong = document.querySelector(".wrong")
-var correct = document.querySelector(".correct")
+var result = document.querySelector(".result")
 
 var correctAnswer1 = document.querySelector("#correctAnswer1")
-var wrongAnswers1 = document.getElementById("wrongAnswer1")
-var wrongAnswers101 = document.getElementById("wrongAnswer1.1")
-var wrongAnswers102 = document.getElementById("wrongAnswer1.2")
+var wrongAnswer1 = document.getElementById("wrongAnswer1")
+var wrongAnswer101 = document.getElementById("wrongAnswer1.1")
+var wrongAnswer102 = document.getElementById("wrongAnswer1.2")
 
 var correctAnswer2 = document.querySelector("#correctAnswer2")
-var wrongAnswers2 = document.getElementById("wrongAnswer2")
-var wrongAnswers201 = document.getElementById("wrongAnswer2.1")
-var wrongAnswers202 = document.getElementById("wrongAnswer2.2")
+var wrongAnswer2 = document.getElementById("wrongAnswer2")
+var wrongAnswer201 = document.getElementById("wrongAnswer2.1")
+var wrongAnswer202 = document.getElementById("wrongAnswer2.2")
 
 var correctAnswer3 = document.querySelector("#correctAnswer3")
-var wrongAnswers3 = document.getElementById("wrongAnswer3")
-var wrongAnswers301 = document.getElementById("wrongAnswer3.1")
-var wrongAnswers302 = document.getElementById("wrongAnswer3.2")
+var wrongAnswer3 = document.getElementById("wrongAnswer3")
+var wrongAnswer301 = document.getElementById("wrongAnswer3.1")
+var wrongAnswer302 = document.getElementById("wrongAnswer3.2")
 
 function countdown() {
   var timeLeft = 75;
@@ -40,10 +40,10 @@ function countdown() {
   }, 1000);
 }
 function displayWrong(){
-  wrong.classList.remove('hide')
+  wrong.textContent= 'Wrong!'
 }
 function displaycorrect(){
-  correct.classList.remove('hide')
+  correct.textContent= 'Correct!'
 }
 
 
@@ -71,29 +71,38 @@ function startQuiz() {
     showQuestion1()
 }
 function wrongAnswer1NextQuestion(){
-  displayWrong ()
+  if (wrongAnswer1){
+    result.textContent = 'Wrong!'
+  }
   showQuestion2()
 }
 function correctAnswer1NextQuestion(){
-  displaycorrect()
+  if (correctAnswer1){
+    result.textContent = 'Correct!'
+  }
   showQuestion2()
 }
 
 function wrongAnswer2NextQuestion(){
-  displayWrong ()
+  if (wrongAnswer2){
+    result.textContent = 'Wrong!'  }
   showQuestion3()
-}
+}  
+
 function correctAnswer2NextQuestion(){
-  displaycorrect()
+  if (correctAnswer2){
+    result.textContent = 'Correct!'  }
   showQuestion3()
 }
 
 function wrongAnswer3NextQuestion(){
-  displayWrong ()
+  if (wrongAnswer3){
+    result.textContent = 'Wrong!'  }  
   showQuestion4()
 }
 function correctAnswer3NextQuestion(){
-  displaycorrect()
+  if (correctAnswer2){
+    result.textContent = 'Correct!'  }  
   showQuestion4()
 }
 
@@ -102,17 +111,19 @@ var startQuizButton = document.querySelector(".startbutton")
 startQuizButton.addEventListener("click", startQuiz)
 
 correctAnswer1.addEventListener("click", correctAnswer1NextQuestion)
-wrongAnswers1.addEventListener("click", wrongAnswer1NextQuestion)
-wrongAnswers101.addEventListener("click", wrongAnswer1NextQuestion)
-wrongAnswers102.addEventListener("click", wrongAnswer1NextQuestion)
+wrongAnswer1.addEventListener("click", wrongAnswer1NextQuestion)
+wrongAnswer101.addEventListener("click", wrongAnswer1NextQuestion)
+wrongAnswer102.addEventListener("click", wrongAnswer1NextQuestion)
 
 
 correctAnswer2.addEventListener("click", correctAnswer2NextQuestion)
-wrongAnswers2.addEventListener("click", wrongAnswer2NextQuestion)
-wrongAnswers201.addEventListener("click", wrongAnswer2NextQuestion)
-wrongAnswers202.addEventListener("click", wrongAnswer2NextQuestion)
+wrongAnswer2.addEventListener("click", wrongAnswer2NextQuestion)
+wrongAnswer201.addEventListener("click", wrongAnswer2NextQuestion)
+wrongAnswer202.addEventListener("click", wrongAnswer2NextQuestion)
 
 correctAnswer3.addEventListener("click", correctAnswer3NextQuestion)
-wrongAnswers3.addEventListener("click", wrongAnswer3NextQuestion)
-wrongAnswers301.addEventListener("click", wrongAnswer3NextQuestion)
-wrongAnswers302.addEventListener("click", wrongAnswer3NextQuestion)
+wrongAnswer3.addEventListener("click", wrongAnswer3NextQuestion)
+wrongAnswer301.addEventListener("click", wrongAnswer3NextQuestion)
+wrongAnswer302.addEventListener("click", wrongAnswer3NextQuestion)
+
+ 
