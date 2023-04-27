@@ -4,15 +4,21 @@ timerEl.textContent = "Time: " + timeLeft
 
 var firstPageEl = document.querySelector(".firstPage")
 var allQuestions = document.querySelector(".allQuestions")
-
 var lastPageEl = document.querySelector(".lastPage")
 var highscorePage = document.querySelector(".highscorePage")
+
+
 var result = document.querySelector('.result')
 var finalScore = document.querySelector("#finalScoreTotal")
 var submitButton = document.querySelector("#submit")
 
 
-
+function showLastPage() {
+  allQuestions.classList.add('hide')
+  lastPageEl.classList.remove('hide')
+  finalScore.textContent = "Your final score: " + timeLeft
+ }
+ 
 
 
 var timeLeft = 75;
@@ -21,16 +27,12 @@ function countdown() {
     timerEl.textContent = "Time: " + timeLeft;
     timeLeft--;
 
-    if (timeLeft === 0) {
+    if (timeLeft === 0 || count === 4) {
       timerEl.textContent = "Times Up!";
+      showLastPage()
       clearInterval(timeInterval)
     }
   }, 1000);
-}
-function showLastPage() {
- allQuestions.classList.add('hide')
- lastPageEl.classList.remove('hide')
- finalScore.textContent = "Your final score: " + timeLeft
 }
 
 
@@ -71,10 +73,11 @@ const questions = [
       { answer: "4.parentheses", correct: false }
     ],
   },
-  {
-    question: showLastPage()
-  }
+ 
 ]
+
+
+
 const questionH3 = document.getElementById('question-h3')
 const answersUl = document.getElementById('answers-ul')
 let count = 0
@@ -82,7 +85,7 @@ function showNextQuestion() {
   firstPageEl.classList.add('hide')
   lastPageEl.classList.add('hide')
   allQuestions.classList.remove('hide')
-
+  
   questionH3.textContent = questions[count].question
   while (answersUl.firstChild) {
     answersUl.firstChild.remove();
@@ -93,13 +96,15 @@ function showNextQuestion() {
     answerBtn.innerText = questions[count].choices[i].answer
     answersUl.appendChild(answerBtn)
   }
+  
   count++
+ 
 }
 function checkAnswer(event){
   if(event.target.tagName === "BUTTON"){
     if(event.target.getAttribute('data-correct') === "true"){
       result.textContent= "Correct!"
-      
+    
       showNextQuestion();
       
     } else{
@@ -125,9 +130,7 @@ function startQuiz() {
 
 
 
-function submitInitials() {
 
-}
 
 var startQuizButton = document.querySelector(".startbutton")
 startQuizButton.addEventListener("click", startQuiz)
