@@ -3,127 +3,135 @@ var timeLeft = 0
 timerEl.textContent = "Time: " + timeLeft
 
 var firstPageEl = document.querySelector(".firstPage")
-var secondPageEl = document.querySelector(".secondPage")
-var thirdPageEL = document.querySelector(".thirdPage")
-var fourthPageEL = document.querySelector(".fourthPage")
-var fithPageEL = document.querySelector(".fithPage")
+var allQuestions = document.querySelector(".allQuestions")
 
-var wrong = document.querySelector(".wrong")
-var result = document.querySelector(".result")
+var lastPageEl = document.querySelector(".lastPage")
+var highscorePage = document.querySelector(".highscorePage")
+var result = document.querySelector('.result')
+var finalScore = document.querySelector("#finalScoreTotal")
+var submitButton = document.querySelector("#submit")
 
-var correctAnswer1 = document.querySelector("#correctAnswer1")
-var wrongAnswer1 = document.getElementById("wrongAnswer1")
-var wrongAnswer101 = document.getElementById("wrongAnswer1.1")
-var wrongAnswer102 = document.getElementById("wrongAnswer1.2")
 
-var correctAnswer2 = document.querySelector("#correctAnswer2")
-var wrongAnswer2 = document.getElementById("wrongAnswer2")
-var wrongAnswer201 = document.getElementById("wrongAnswer2.1")
-var wrongAnswer202 = document.getElementById("wrongAnswer2.2")
 
-var correctAnswer3 = document.querySelector("#correctAnswer3")
-var wrongAnswer3 = document.getElementById("wrongAnswer3")
-var wrongAnswer301 = document.getElementById("wrongAnswer3.1")
-var wrongAnswer302 = document.getElementById("wrongAnswer3.2")
 
+
+var timeLeft = 75;
 function countdown() {
-  var timeLeft = 75;
   var timeInterval = setInterval(function () {
-    timerEl.textContent = "Time: "+ timeLeft;
+    timerEl.textContent = "Time: " + timeLeft;
     timeLeft--;
 
     if (timeLeft === 0) {
-      timerEl.textContent = "";
+      timerEl.textContent = "Times Up!";
       clearInterval(timeInterval)
-      displayMessage();
     }
   }, 1000);
 }
-function displayWrong(){
-  wrong.textContent= 'Wrong!'
-}
-function displaycorrect(){
-  correct.textContent= 'Correct!'
+function showLastPage() {
+ allQuestions.classList.add('hide')
+ lastPageEl.classList.remove('hide')
+ finalScore.textContent = "Your final score: " + timeLeft
 }
 
 
-function showQuestion1() {
+const questions = [
+  {
+    question: "Commonly used data type DO NOT include:",
+    choices: [
+      { answer: "1.booleans", correct: false },
+      { answer: "2.alerts", correct: true },
+      { answer: "3.numbers", correct: false },
+      { answer: "4.strings", correct: false }
+    ],
+  },
+  {
+    question: "the condition in an if / else statementis enclosed within ____:",
+    choices: [
+      { answer: "1.quotes", correct: false },
+      { answer: "2.curly brackets", correct: false },
+      { answer: "3.parentheses", correct: true },
+      { answer: "4.square brackets", correct: false }
+    ],
+  },
+  {
+    question: "Arrays in JavaScript can be used to store:",
+    choices: [
+      { answer: " 1.numbers and strings", correct: false },
+      { answer: "2.other arrays", correct: false },
+      { answer: "3.booleans", correct: false },
+      { answer: "4.all of the above", correct: true }
+    ],
+  },
+  {
+    question: "String values must be enclosed within ____ when being assigned to variable:",
+    choices: [
+      { answer: "1.commas", correct: false },
+      { answer: "2.curly brackets", correct: true },
+      { answer: "3.quotes", correct: false },
+      { answer: "4.parentheses", correct: false }
+    ],
+  },
+  {
+    question: showLastPage()
+  }
+]
+const questionH3 = document.getElementById('question-h3')
+const answersUl = document.getElementById('answers-ul')
+let count = 0
+function showNextQuestion() {
   firstPageEl.classList.add('hide')
-  secondPageEl.classList.remove('hide')
-}
-function showQuestion2(){
-  secondPageEl.classList.add('hide')
-  thirdPageEL.classList.remove('hide')
-}
-function showQuestion3(){
-  thirdPageEL.classList.add('hide')
-  fourthPageEL.classList.remove('hide')
-}
-function showQuestion4(){
-  fourthPageEL.classList.add('hide')
-  fithPageEL.classList.remove('hide')
-}
+  lastPageEl.classList.add('hide')
+  allQuestions.classList.remove('hide')
 
+  questionH3.textContent = questions[count].question
+  while (answersUl.firstChild) {
+    answersUl.firstChild.remove();
+  }
+  for (i = 0; i < questions[count].choices.length; i++) {
+    answerBtn = document.createElement('button')
+    answerBtn.setAttribute('data-correct', questions[count].choices[i].correct)
+    answerBtn.innerText = questions[count].choices[i].answer
+    answersUl.appendChild(answerBtn)
+  }
+  count++
+}
+function checkAnswer(event){
+  if(event.target.tagName === "BUTTON"){
+    if(event.target.getAttribute('data-correct') === "true"){
+      result.textContent= "Correct!"
+      
+      showNextQuestion();
+      
+    } else{
+      timeLeft = timeLeft - 10
+      result.textContent= "Wrong!"
+      
+      showNextQuestion();
+    }
+    
+  }
+}
+answersUl.addEventListener('click', checkAnswer)
 
-
+ 
+function showHighscorePage() {
+  lastPageEl.classList.add('hide')
+  highscorePage.classList.remove('hide')
+}
 function startQuiz() {
-    countdown()
-    showQuestion1()
-}
-function wrongAnswer1NextQuestion(){
-  if (wrongAnswer1){
-    result.textContent = 'Wrong!'
-  }
-  showQuestion2()
-}
-function correctAnswer1NextQuestion(){
-  if (correctAnswer1){
-    result.textContent = 'Correct!'
-  }
-  showQuestion2()
+  countdown()
+  showNextQuestion()
 }
 
-function wrongAnswer2NextQuestion(){
-  if (wrongAnswer2){
-    result.textContent = 'Wrong!'  }
-  showQuestion3()
-}  
 
-function correctAnswer2NextQuestion(){
-  if (correctAnswer2){
-    result.textContent = 'Correct!'  }
-  showQuestion3()
-}
 
-function wrongAnswer3NextQuestion(){
-  if (wrongAnswer3){
-    result.textContent = 'Wrong!'  }  
-  showQuestion4()
-}
-function correctAnswer3NextQuestion(){
-  if (correctAnswer2){
-    result.textContent = 'Correct!'  }  
-  showQuestion4()
-}
+function submitInitials() {
 
+}
 
 var startQuizButton = document.querySelector(".startbutton")
 startQuizButton.addEventListener("click", startQuiz)
 
-correctAnswer1.addEventListener("click", correctAnswer1NextQuestion)
-wrongAnswer1.addEventListener("click", wrongAnswer1NextQuestion)
-wrongAnswer101.addEventListener("click", wrongAnswer1NextQuestion)
-wrongAnswer102.addEventListener("click", wrongAnswer1NextQuestion)
 
 
-correctAnswer2.addEventListener("click", correctAnswer2NextQuestion)
-wrongAnswer2.addEventListener("click", wrongAnswer2NextQuestion)
-wrongAnswer201.addEventListener("click", wrongAnswer2NextQuestion)
-wrongAnswer202.addEventListener("click", wrongAnswer2NextQuestion)
-
-correctAnswer3.addEventListener("click", correctAnswer3NextQuestion)
-wrongAnswer3.addEventListener("click", wrongAnswer3NextQuestion)
-wrongAnswer301.addEventListener("click", wrongAnswer3NextQuestion)
-wrongAnswer302.addEventListener("click", wrongAnswer3NextQuestion)
-
- 
+submitButton.addEventListener("click", showHighscorePage)
