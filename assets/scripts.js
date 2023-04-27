@@ -82,6 +82,9 @@ const questionH3 = document.getElementById('question-h3')
 const answersUl = document.getElementById('answers-ul')
 let count = 0
 function showNextQuestion() {
+  if(count <= 3){
+
+  
   firstPageEl.classList.add('hide')
   lastPageEl.classList.add('hide')
   allQuestions.classList.remove('hide')
@@ -96,22 +99,23 @@ function showNextQuestion() {
     answerBtn.innerText = questions[count].choices[i].answer
     answersUl.appendChild(answerBtn)
   }
-  
-  count++
+}
+ 
  
 }
 function checkAnswer(event){
   if(event.target.tagName === "BUTTON"){
     if(event.target.getAttribute('data-correct') === "true"){
       result.textContent= "Correct!"
-    
+      count++
       showNextQuestion();
-      
+
     } else{
       timeLeft = timeLeft - 10
       result.textContent= "Wrong!"
-      
+      count++
       showNextQuestion();
+
     }
     
   }
