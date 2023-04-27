@@ -6,17 +6,23 @@ var firstPageEl = document.querySelector(".firstPage")
 var allQuestions = document.querySelector(".allQuestions")
 var lastPageEl = document.querySelector(".lastPage")
 var highscorePage = document.querySelector(".highscorePage")
-
+var highscoreList = document.querySelector('#highscoreList')
+var userInitialsInput = document.querySelector('h6')
+var highscoreLink = document.querySelector('#highScoreLink')
 
 var result = document.querySelector('.result')
 var finalScore = document.querySelector("#finalScoreTotal")
 var submitButton = document.querySelector("#submit")
+var initialsInput = document.querySelector('#initialsInput')
+var clearHighscores = document.querySelector('#clearHighscores')
+var goBackButton = document.querySelector('#goBack')
 
 
 function showLastPage() {
   allQuestions.classList.add('hide')
   lastPageEl.classList.remove('hide')
-  finalScore.textContent = "Your final score: " + timeLeft
+  result.classList.add('hide')
+  finalScore.textContent += timeLeft
  }
  
 
@@ -81,6 +87,8 @@ const questions = [
 const questionH3 = document.getElementById('question-h3')
 const answersUl = document.getElementById('answers-ul')
 let count = 0
+
+
 function showNextQuestion() {
   if(count <= 3){
 
@@ -124,21 +132,44 @@ answersUl.addEventListener('click', checkAnswer)
 
  
 function showHighscorePage() {
+  firstPageEl.classList.add('hide')
   lastPageEl.classList.add('hide')
+  result.classList.add('hide')
   highscorePage.classList.remove('hide')
+  userInitialsInput.innerHTML = localStorage.getItem('value') + ' - ' + finalScore.textContent
 }
 function startQuiz() {
   countdown()
   showNextQuestion()
 }
 
-
-
+function userInitials(){
+ localStorage.setItem('value', initialsInput.value)
+}
+function userScore (){
+  localStorage.setItem('score', finalScore.textContent)
+}
+function clearUserInput(){
+  localStorage.clear('value')
+  userInitialsInput.innerHTML = ""
+}
+function restartQuiz(){
+  location.reload()
+}
 
 
 var startQuizButton = document.querySelector(".startbutton")
 startQuizButton.addEventListener("click", startQuiz)
-
-
+initialsInput.addEventListener('keyup', function(){
+  userInitials()
+  userScore()
+})
+clearHighscores.addEventListener('click', clearUserInput)
+goBackButton.addEventListener("click", restartQuiz)
 
 submitButton.addEventListener("click", showHighscorePage)
+
+highscoreLink.addEventListener('click', function(){
+  showHighscorePage()
+  userInitialsInput.innerHTML = localStorage.getItem('value') + ' - ' +localStorage.getItem('score') 
+})

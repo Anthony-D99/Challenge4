@@ -73,7 +73,10 @@ h5{
   height: 100px;
   text-align: center;
   font-size: 30px;
-  
-  border: solid 5px black;
- background-color: plum ;
+}
+h6{
+  background-color: plum ;
+  opacity: 50%;
+  margin-left: 600px;
+  margin-right: 600px;
 }
